@@ -67,7 +67,7 @@ function App() {
           <h1 className="text-5xl font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400 mb-2">
             TEMPUS
           </h1>
-          <p className="text-slate-500">Weather Project • Week 3 • 2026</p>
+          <p className="text-slate-500"> 2026</p>
         </header>
 
         {/* Search Bar */}
