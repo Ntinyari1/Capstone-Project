@@ -34,8 +34,8 @@ function App() {
         setWeather(null);
       }
     } catch (err) {
-     console.error("Tempus Fetch Error:", err); 
-  setError("Network error. Check your connection.");
+      console.error("Tempus Fetch Error:", err); 
+      setError("Network error. Check your connection.");
     } finally {
       setLoading(false);
     }
@@ -58,7 +58,21 @@ function App() {
     return () => clearInterval(interval);
   }, [city, fetchWeather]);
 
-  // --- 5. UI Render ---
+  // --- 5. Clothing Advice Logic ---
+  const getClothingAdvice = (temp, condition) => {
+    const isRaining = condition?.toLowerCase().includes("rain");
+    if (isRaining) return "It's raining! Grab an umbrella and a waterproof jacket.";
+    
+    // Convert logic to handle both C and F
+    const celsiusTemp = unit === 'metric' ? temp : (temp - 32) * 5/9;
+
+    if (celsiusTemp > 25) return "It's hot! Wear light cotton and breathable shoes.";
+    if (celsiusTemp > 18) return "Pleasant weather. A light t-shirt or a blouse is perfect.";
+    if (celsiusTemp > 10) return "Chilly. Time for a denim jacket or layered knits.";
+    return "Cold alert! Heavy coats and boots are a must.";
+  };
+
+  // --- 6. UI Render ---
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100 p-4 md:p-10 font-sans">
       <div className="max-w-4xl mx-auto">
@@ -67,7 +81,7 @@ function App() {
           <h1 className="text-5xl font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400 mb-2">
             TEMPUS
           </h1>
-          <p className="text-slate-500">Weather Project • 2026</p>
+          <p className="text-slate-500">Weather Project • Week 3 • 2026</p>
         </header>
 
         {/* Search & History Section */}
@@ -112,6 +126,7 @@ function App() {
         {/* Weather Display */}
         {weather && (
           <main className="grid grid-cols-1 md:grid-cols-3 gap-6 animate-in fade-in zoom-in duration-500">
+            {/* Main Temp Card */}
             <div className="md:col-span-2 bg-slate-900/50 border border-slate-800 p-10 rounded-[2.5rem] backdrop-blur-xl">
               <div className="flex justify-between">
                 <div>
@@ -131,6 +146,7 @@ function App() {
               </div>
             </div>
 
+            {/* Stats Sidebar with Clothing Advice */}
             <div className="bg-slate-900/50 border border-slate-800 p-8 rounded-[2.5rem] flex flex-col justify-center gap-6">
               <div className="flex justify-between border-b border-slate-800 pb-4">
                 <span className="text-slate-500">Humidity</span>
@@ -140,9 +156,17 @@ function App() {
                 <span className="text-slate-500">Wind</span>
                 <span className="font-bold">{weather.wind.speed} {unit === 'metric' ? 'm/s' : 'mph'}</span>
               </div>
-              <div className="flex justify-between">
+              <div className="flex justify-between border-b border-slate-800 pb-4">
                 <span className="text-slate-500">Feels Like</span>
                 <span className="font-bold">{Math.round(weather.main.feels_like)}°</span>
+              </div>
+              
+              {/* Integrated Clothing Advice */}
+              <div className="pt-2">
+                <p className="text-blue-400 text-xs font-bold tracking-widest uppercase mb-2">Style Tip</p>
+                <p className="text-sm text-slate-300 italic">
+                  "{getClothingAdvice(weather.main.temp, weather.weather[0].main)}"
+                </p>
               </div>
             </div>
           </main>
