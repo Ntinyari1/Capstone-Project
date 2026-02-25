@@ -1,3 +1,57 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+/* custom utility components for Tempus app */
+@layer components {
+  .tempus-container {
+    @apply mx-auto p-6;
+  }
+  @screen md {
+    .tempus-container {
+      @apply p-12;
+    }
+  }
+
+  .tempus-header-title {
+    @apply text-4xl font-black tracking-tighter bg-clip-text text-transparent bg-gradient-to-r from-white to-white/40;
+  }
+
+  .tempus-toggle {
+    @apply px-5 py-2 rounded-full bg-white/10 hover:bg-white/20 border border-white/10 transition-all text-sm font-bold backdrop-blur-md;
+  }
+
+  .tempus-input {
+    @apply flex-1 bg-transparent px-6 py-3 outline-none text-white placeholder:text-white/30;
+  }
+
+  .tempus-search-btn {
+    @apply bg-white text-slate-900 px-8 py-3 rounded-2xl font-black hover:scale-105 active:scale-95 transition-all shadow-lg;
+  }
+
+  .tempus-search-container {
+    @apply flex gap-2 p-2 rounded-3xl bg-white/5 border border-white/10 backdrop-blur-2xl shadow-2xl;
+  }
+
+  .tempus-history-btn {
+    @apply px-4 py-1.5 bg-white/5 hover:bg-white/10 rounded-full text-[10px] font-bold uppercase tracking-widest border border-white/5 transition-all;
+  }
+
+  .tempus-card {
+    @apply bg-white/10 border border-white/10 p-8 rounded-[3rem] backdrop-blur-3xl shadow-2xl;
+  }
+
+  .tempus-hero {
+    @apply lg:col-span-8 bg-white/10 backdrop-blur-2xl border border-white/20 rounded-[3rem] p-12 relative overflow-hidden shadow-2xl;
+  }
+
+  .tempus-sidebar {
+    @apply lg:col-span-4 space-y-6;
+  }
+
+  .tempus-forecast {
+    @apply bg-black/20 border border-white/5 p-8 rounded-[3rem] backdrop-blur-2xl;
+  }
+
+  .tempus-error {
+    @apply bg-red-500/20 border border-red-500/50 text-red-200 p-4 rounded-2xl text-center mb-8 max-w-sm mx-auto backdrop-blur-md;
+  }
+}
