@@ -475,7 +475,7 @@ function App() {
 
         
               <div className="tempus-forecast">
-                {/* Hourly strip (matches screenshot row) */}
+                {/* Hourly strip */}
                 <div className="flex items-end justify-between gap-3 overflow-x-auto pb-3 border-b border-white/10">
                   {hourly.map((h) => (
                     <div key={h.dt} className="min-w-[56px] text-center">
@@ -505,7 +505,7 @@ function App() {
                   </button>
                 </div>
 
-                {/* Daily 7-day forecast list (matches screenshot rows) */}
+                {/* Daily 7-day forecast list*/}
                 {forecast.length > 0 && showDaily && (
                   <div id="tempus-daily-forecast" className="pt-4 space-y-3">
                     {forecast.map((d, index) => (
@@ -552,7 +552,7 @@ function App() {
                 )}
               </div>
 
-              {/* Dressing suggestions should come after the 7-day forecast */}
+              {/* Dressing suggestions  */}
               <div className="tempus-card">
                 <ClothingAdvice 
                   temp={weather.main.temp} 
