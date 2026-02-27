@@ -1,5 +1,7 @@
+/* eslint-env node */
+/* eslint-disable no-undef */
 /** @type {import('tailwindcss').Config} */
-export default {
+module.exports = {
   darkMode: "class",
   content: [
     "./index.html",
@@ -7,7 +9,10 @@ export default {
     "./src/**/*.css",
   ],
   theme: {
+    screens: {
+      md: '768px',
+    },
     extend: {},
   },
   plugins: [],
-}
+};

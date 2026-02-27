@@ -1,3 +1,4 @@
+/* cSpell:ignore geolocated Geolocated nums */
 import React, { useState, useEffect, useCallback } from 'react';
 import ClothingAdvice from './components/ClothingAdvice';
 import SettingsDrawer from './components/SettingsDrawer';
@@ -47,11 +48,6 @@ function App() {
   const [showDaily, setShowDaily] = useState(false);
 
   const API_KEY = import.meta.env.VITE_WEATHER_API_KEY;
-
-  const toCelsius = useCallback((value) => {
-    if (typeof value !== 'number') return null;
-    return unit === 'metric' ? value : (value - 32) * 5 / 9;
-  }, [unit]);
 
   const buildDailyForecast = useCallback((list) => {
     if (!Array.isArray(list)) return [];
@@ -347,7 +343,7 @@ function App() {
   }, [manageLocationRequested]);
 
   return (
-    <div className={`min-h-screen transition-all duration-1000 bg-gradient-to-br ${getThemeClass()} font-sans text-slate-900 dark:text-white`}>
+    <div className={`min-h-screen transition-all duration-1000 bg-linear-to-br ${getThemeClass()} font-sans text-slate-900 dark:text-white`}>
       <div className="tempus-container">
         {statusBar && weather && (
           <div className="mb-4 px-4 py-2 rounded-2xl bg-black/10 dark:bg-black/40 border border-white/20 flex items-center justify-between text-xs tracking-widest uppercase text-slate-800/80 dark:text-white/60">
@@ -365,9 +361,9 @@ function App() {
               className="inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-white/50 dark:bg-black/40 border border-white/60 dark:border-white/20 text-slate-700 dark:text-white/80 backdrop-blur-xl"
               aria-label="Open settings"
             >
-              <span className="block w-4 h-[2px] bg-current mb-[3px]" />
-              <span className="block w-4 h-[2px] bg-current mb-[3px]" />
-              <span className="block w-4 h-[2px] bg-current" />
+              <span className="block w-4 h-0.5 bg-current mb-0.75" />
+              <span className="block w-4 h-0.5 bg-current mb-0.75" />
+              <span className="block w-4 h-0.5 bg-current" />
             </button>
             <h1 className="tempus-header-title">
               TEMPUS
@@ -437,13 +433,13 @@ function App() {
         {error && <div className="tempus-error">⚠️ {error}</div>}
 
         {weather && (
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 p-4">
+          <div className="flex flex-col gap-6 p-4">
             
             <div className="tempus-hero">
               <div className="relative z-10">
                 <h2 className="text-8xl font-black tracking-tighter">{weather.name}</h2>
                 <p className="text-2xl text-slate-700/60 dark:text-white/50 font-medium capitalize">{weather.weather[0].description}</p>
-                <div className="text-[15rem] font-black leading-none mt-10 tracking-tighter drop-shadow-2xl">
+                <div className="text-[8rem] md:text-[12rem] lg:text-[15rem] font-black leading-none mt-10 tracking-tighter drop-shadow-2xl max-w-full overflow-hidden">
                   {Math.round(weather.main.temp)}°
                 </div>
               </div>
@@ -478,7 +474,7 @@ function App() {
                 {/* Hourly strip */}
                 <div className="flex items-end justify-between gap-3 overflow-x-auto pb-3 border-b border-white/10">
                   {hourly.map((h) => (
-                    <div key={h.dt} className="min-w-[56px] text-center">
+                    <div key={h.dt} className="min-w-14 text-center">
                       <p className="text-[10px] font-bold text-slate-700/60 dark:text-white/50">
                         {new Date(h.dt * 1000).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' })}
                       </p>
@@ -499,7 +495,7 @@ function App() {
                         el.scrollIntoView({ behavior: 'smooth', block: 'start' });
                       }
                     }}
-                    className="min-w-[56px] text-right text-xs font-bold text-slate-700/70 dark:text-white/60 hover:text-slate-900 dark:hover:text-white transition-colors"
+                    className="min-w-14 text-right text-xs font-bold text-slate-700/70 dark:text-white/60 hover:text-slate-900 dark:hover:text-white transition-colors"
                   >
                     More…
                   </button>

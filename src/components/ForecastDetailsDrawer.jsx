@@ -44,7 +44,7 @@ const ForecastDetailsDrawer = ({
         onClick={onClose}
         aria-label="Close hourly details"
       />
-      <aside className="w-[420px] max-w-full h-full bg-slate-900/95 text-slate-100 shadow-2xl border-l border-white/10 backdrop-blur-2xl overflow-y-auto">
+      <aside className="w-105 max-w-full h-full bg-slate-900/95 text-slate-100 shadow-2xl border-l border-white/10 backdrop-blur-2xl overflow-y-auto">
         <header className="px-6 pt-6 pb-4 border-b border-white/10">
           <div className="flex items-center justify-between">
             <div>
